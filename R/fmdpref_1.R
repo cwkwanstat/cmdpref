@@ -1,10 +1,10 @@
 #Metric and non-metric MDPREF model
 ##by CW Kwan
-#Mar 5, 2019
+#Mar 9, 2021
 #S = ULV'
 #subjects are columns, objects are rows
 #
-
+#library(roxygen2)
 
 metric.mdpref<-function(x,ndim) {
   mysvd<-svd(x)
@@ -42,6 +42,9 @@ mdpref<-function(x,ndim,monotone,tor,maxit) {
       fit0<-fit1
     }
     fit$tpref<-m.x
+#9/3/2021
+    fit$stress<-sqrt(sum((m.x-fit$fitted)^2/m.x^2))
+#9/3/2021
     if (itn>=maxit) {print('convergence not met')}
   }
   return(fit)
@@ -92,7 +95,7 @@ summary.mdpref<-function(object,...) {
 #' Metric and non-metric MDPREF model
 #'
 #' @author Chi-wai Kwan
-#' @param pref Preference data matrix. Rows as objects and columns as subjects. Small value for less preferable and large value for more preferable.
+#' @param pref Preference data matrix. Rows as objects and columns as subjects. Small value for less preferred and large value for more preferred.
 #' @param ndim Number of dimensions.
 #' @param monotone TRUE for Kruskal monotonic transformation. FALSE for metric scale.
 #' @param tor tolerance for monotonic transformation.
@@ -115,6 +118,7 @@ summary.mdpref<-function(object,...) {
 #' \item{d }{Singular values}
 #' \item{fitted }{fitted preference matrix}
 #' \item{tpref }{transformed preference matrix}
+#' \item{stress }{Stress I value under monotonic transformation}
 #'
 #' @references
 #' Carroll, J. D. (1972). “Individual Differences and Multidimensional Scaling.” In Multidimensional Scaling: Theory and Applications in the Behavioral Sciences, vol. 1, edited by R. N. Shepard, A. K. Romney, and S. B. Nerlove, 105–155. New York: Seminar Press.\cr\cr
