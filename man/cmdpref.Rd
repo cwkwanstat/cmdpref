@@ -7,7 +7,7 @@
 cmdpref(pref, ndim = 2, monotone = FALSE, tor = 1e-08, maxit = 50)
 }
 \arguments{
-\item{pref}{Preference data matrix. Rows as objects and columns as subjects. Small value for less preferable and large value for more preferable.}
+\item{pref}{Preference data matrix. Rows as objects and columns as subjects. Small value for less preferred and large value for more preferred.}
 
 \item{ndim}{Number of dimensions.}
 
@@ -24,6 +24,7 @@ An object of class "mdpref".
 \item{d }{Singular values}
 \item{fitted }{fitted preference matrix}
 \item{tpref }{transformed preference matrix}
+\item{stress }{Stress I value under monotonic transformation}
 }
 \description{
 Metric and non-metric MDPREF model
